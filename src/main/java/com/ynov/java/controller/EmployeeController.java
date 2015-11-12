@@ -21,10 +21,10 @@ public class EmployeeController {
         return employeeService.addEmployee(employee);
     }
 
-    @RequestMapping(value = "/employee", method = RequestMethod.GET)
-        List<Employee> getEmployees(){
-            return employeeService.getEmployeeList();
-        }
+//    @RequestMapping(value = "/employee", method = RequestMethod.GET)
+//        List<Employee> getEmployees(){
+//            return employeeService.getEmployeeList();
+//        }
 
 
     @RequestMapping(value = "/employee/{employeeId}", method = RequestMethod.GET)

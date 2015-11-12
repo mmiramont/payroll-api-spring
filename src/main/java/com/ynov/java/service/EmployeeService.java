@@ -23,9 +23,9 @@ public class EmployeeService {
         return employeeMap.get(Long.valueOf(id));
     }
 
-    public List<Employee> getEmployeeList() {
-        return new ArrayList<Employee>(employeeMap.values());
-    }
+//    public List<Employee> getEmployeeList() {
+//        return new ArrayList<Employee>(employeeMap.values());
+//    }
 
     public Employee updateEmployee(int id, Employee employee) {
         employee.setId(id);
