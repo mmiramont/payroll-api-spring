@@ -11,7 +11,7 @@ public class Project {
     private int id;
     private String name;
     private List<Skill> requiredSkills = new ArrayList<Skill>();
-    private List<Employee> team = new ArrayList<Employee>();
+    private Team team = new Team();
     // Pour rajouter un employée à un projet via son Id (JSON)
     private int employeeId;
 
@@ -39,16 +39,24 @@ public class Project {
         this.name = name;
     }
 
-    public List<Employee> getTeam() {
+    public Team getTeam() {
         return team;
     }
 
     public void setTeam(List<Employee> team) {
-        this.team = team;
+        this.setTeam(team);
     }
 
     public List<Skill> getRequiredSkills() {
         return requiredSkills;
+    }
+
+    public List<Employee> getTeamEmployees(){
+        return team.getTeam();
+    }
+
+    public SkillList getSkillList(){
+        return new SkillList(requiredSkills);
     }
 
     public void setRequiredSkills(List<Skill> requiredSkills) {

@@ -1,8 +1,9 @@
 package com.ynov.java.controller;
 
-import com.ynov.java.model.Employee;
 import com.ynov.java.model.Project;
 import com.ynov.java.model.Skill;
+import com.ynov.java.model.SkillList;
+import com.ynov.java.model.Team;
 import com.ynov.java.service.ProjectService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -47,17 +48,17 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "project/{projectId}/teamMember/list", method = RequestMethod.GET)
-    List<Employee> getEmployeeListOfProject(@PathVariable("projectId") int projectId){
+    Team getEmployeeListOfProject(@PathVariable("projectId") int projectId){
         return projectService.getEmployeeListOfProject(projectId);
     }
 
     @RequestMapping(value = "project/{projectId}/fulfilledSkills", method = RequestMethod.GET)
-    List<Skill> fulfilledSkills(@PathVariable("projectId") int projectId){
+    SkillList fulfilledSkills(@PathVariable("projectId") int projectId){
         return projectService.fulfilledSkills(projectId);
     }
 
-    @RequestMapping(value = "project/{projectId}/unfilledSkills", method = RequestMethod.GET)
-    List<Skill> unfilledSkills(@PathVariable("projectId") int projectId){
+    @RequestMapping(value = "project/{projectId}/unfulfilledSkills", method = RequestMethod.GET)
+    SkillList unfilledSkills(@PathVariable("projectId") int projectId){
         return projectService.unfulfilledSkills(projectId);
     }
 

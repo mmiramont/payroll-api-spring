@@ -2,9 +2,7 @@ package com.ynov.java.service;
 
 import com.ynov.java.controller.ExceptionController;
 import com.ynov.java.database.DatabaseClass;
-import com.ynov.java.model.Employee;
-import com.ynov.java.model.Project;
-import com.ynov.java.model.Skill;
+import com.ynov.java.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,28 +50,28 @@ public class ProjectService extends ExceptionController{
         projectMap.replace(Long.valueOf(projectId), project);
     }
 
-    public List<Employee> getEmployeeListOfProject(int projectId){
+    public Team getEmployeeListOfProject(int projectId){
         return projectMap.get(Long.valueOf(projectId)).getTeam();
     }
 
-    public List<Skill> fulfilledSkills(int projectId) {
+    public SkillList fulfilledSkills(int projectId) {
         Project project =  projectMap.get(Long.valueOf(projectId));
         List<Skill> skills = project.getRequiredSkills();
         List<Skill> valide = new ArrayList<>();
-        for(Employee e : project.getTeam()){
+        for(Employee e : project.getTeam().getTeam()){
             for(Skill skill : e.getSkills()){
                 if (skills.contains(skill))
                         valide.add(skill);
             }
         }
-        return valide;
+        return new SkillList(valide);
     }
 
-    public List<Skill> unfulfilledSkills(int projectId){
+    public SkillList unfulfilledSkills(int projectId){
         Project project =  projectMap.get(Long.valueOf(projectId));
         List<Skill> skills = project.getRequiredSkills();
-        List<Skill> fulfilled = fulfilledSkills(projectId);
+        List<Skill> fulfilled = fulfilledSkills(projectId).getSkills();
         skills.removeAll(fulfilled);
-        return skills;
+        return new SkillList(skills);
     }
 }
