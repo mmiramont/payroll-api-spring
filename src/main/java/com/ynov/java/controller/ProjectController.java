@@ -5,9 +5,9 @@ import com.ynov.java.model.Project;
 import com.ynov.java.model.Skill;
 import com.ynov.java.service.ProjectService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -20,12 +20,13 @@ public class ProjectController {
     ProjectService projectService = new ProjectService();
 
     @RequestMapping(value = "project", method = RequestMethod.POST)
-    Project addProject(@RequestBody Project project){
+    @ResponseStatus(HttpStatus.CREATED)
+    Project addProject(@RequestBody Project project) throws ExceptionController.ProjectNoNameException {
         return projectService.addProject(project);
     }
 
     @RequestMapping(value = "project/{projectId}", method = RequestMethod.GET)
-    Project getProject(@PathVariable("projectId") int id){
+    Project getProject(@PathVariable("projectId") int id) throws ExceptionController.ProjectInvalidId{
         return projectService.getProject(id);
     }
 
@@ -40,7 +41,8 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "project/{projectId}/teamMember", method = RequestMethod.POST)
-    void addEmployeeToProject(@PathVariable("projectId") int projectId, @RequestBody Project project){
+    @ResponseStatus(HttpStatus.OK)
+    void addEmployeeToProject(@PathVariable("projectId") int projectId, @RequestBody Project project) throws ExceptionController.EmployeeInvalidId{
         projectService.addMembertoProject(projectId, project.getEmployeeId());
     }
 

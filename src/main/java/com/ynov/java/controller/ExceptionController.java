@@ -25,4 +25,21 @@ public class ExceptionController extends Throwable {
     public class EmployeeInvalidId extends Exception{
         private static final long serialVersionUID = 100L;
     }
+
+    @ResponseStatus(value= HttpStatus.BAD_REQUEST,reason="L'employé n'a pas de compétences !")
+    public class EmployeeNoSkillException extends Exception
+    {
+        private static final long serialVersionUID = 100L;
+    }
+
+    @ResponseStatus(value= HttpStatus.BAD_REQUEST,reason="Le projet n'a pas de nom !")
+    public class ProjectNoNameException extends Exception
+    {
+        private static final long serialVersionUID = 100L;
+    }
+
+    @ResponseStatus(value= HttpStatus.NOT_FOUND,reason="Pas de projet avec cet id")
+    public class ProjectInvalidId extends Exception{
+        private static final long serialVersionUID = 100L;
+    }
 }

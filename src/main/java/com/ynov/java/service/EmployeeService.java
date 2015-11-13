@@ -14,11 +14,13 @@ import java.util.Map;
 public class EmployeeService extends ExceptionController{
     private static Map<Long, Employee> employeeMap = DatabaseClass.getMessages();
 
-    public Employee addEmployee(Employee employee) throws BelowSmicException, EmployeeNoNameException {
+    public Employee addEmployee(Employee employee) throws BelowSmicException, EmployeeNoNameException, EmployeeNoSkillException {
         if(employee.getSalary() < Employee.SMIC)
             throw new BelowSmicException();
         if (employee.getName() == "" ||employee.getName() == null)
             throw new EmployeeNoNameException();
+        if(employee.getSkills() == null)
+            throw new EmployeeNoSkillException();
         employee.setId(employeeMap.size()+1);
         employeeMap.put(Long.valueOf(employeeMap.size()+1), employee);
         return employee;

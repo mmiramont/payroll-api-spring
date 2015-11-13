@@ -20,7 +20,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employee", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    Employee addEmployee(@RequestBody Employee employee, HttpServletResponse response) throws ExceptionController.BelowSmicException, ExceptionController.EmployeeNoNameException {
+    Employee addEmployee(@RequestBody Employee employee) throws ExceptionController.BelowSmicException, ExceptionController.EmployeeNoNameException, ExceptionController.EmployeeNoSkillException {
         return employeeService.addEmployee(employee);
     }
 
