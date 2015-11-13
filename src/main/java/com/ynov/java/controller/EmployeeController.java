@@ -3,8 +3,10 @@ package com.ynov.java.controller;
 import com.ynov.java.model.Employee;
 import com.ynov.java.service.EmployeeService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -17,18 +19,19 @@ public class EmployeeController {
     EmployeeService employeeService = new EmployeeService();
 
     @RequestMapping(value = "/employee", method = RequestMethod.POST)
-    Employee addEmployee(@RequestBody Employee employee){
+    @ResponseStatus(HttpStatus.CREATED)
+    Employee addEmployee(@RequestBody Employee employee, HttpServletResponse response) throws ExceptionController.BelowSmicException, ExceptionController.EmployeeNoNameException {
         return employeeService.addEmployee(employee);
     }
 
 //    @RequestMapping(value = "/employee", method = RequestMethod.GET)
-//        List<Employee> getEmployees(){
-//            return employeeService.getEmployeeList();
+//        List<Employee> getEmployees(HttpServletResponse response){
+//        return employeeService.getEmployeeList();
 //        }
 
 
     @RequestMapping(value = "/employee/{employeeId}", method = RequestMethod.GET)
-    Employee getEmployee(@PathVariable("employeeId") int id){
+    Employee getEmployee(@PathVariable("employeeId") int id) throws ExceptionController.EmployeeInvalidId {
         return employeeService.getEmployee(id);
     }
 

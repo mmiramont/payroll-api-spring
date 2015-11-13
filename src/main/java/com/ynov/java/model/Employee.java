@@ -9,8 +9,8 @@ public class Employee {
     private int id;
     private String name;
     private List<Skill> skills;
-    private long salary
-            ;
+    private long salary;
+    public static int SMIC = 1000;
 
     public Employee() {
     }
