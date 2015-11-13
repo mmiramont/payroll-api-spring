@@ -5,16 +5,21 @@ import java.util.List;
 
 /**
  * Created by Mathieu on 12/11/2015.
+ * Classe Project de l'application
+ * Gère tous les Project créées
  */
 public class Project {
 
+    // Variables
     private int id;
     private String name;
     private List<Skill> requiredSkills = new ArrayList<Skill>();
-    private Team team = new Team();
+    private List<Employee> team = new ArrayList<Employee>();
+
     // Pour rajouter un employée à un projet via son Id (JSON)
     private int employeeId;
 
+    // Constructeur
     public Project() {
     }
 
@@ -23,6 +28,7 @@ public class Project {
         this.requiredSkills = requiredSkills;
     }
 
+    // Getters & Setters
     public int getId() {
         return id;
     }
@@ -39,7 +45,7 @@ public class Project {
         this.name = name;
     }
 
-    public Team getTeam() {
+    public List<Employee> getTeam() {
         return team;
     }
 
@@ -49,10 +55,6 @@ public class Project {
 
     public List<Skill> getRequiredSkills() {
         return requiredSkills;
-    }
-
-    public List<Employee> getTeamEmployees(){
-        return team.getTeam();
     }
 
     public SkillList getSkillList(){
@@ -67,6 +69,10 @@ public class Project {
         return employeeId;
     }
 
+    /**
+     * Ajoute l'Employee passé en paramètre au projet
+     * @param employee L'Employee à ajouter au projet
+     */
     public void addEmployeeToTeam(Employee employee){
         this.team.add(employee);
     }

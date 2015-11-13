@@ -4,14 +4,18 @@ import java.util.List;
 
 /**
  * Created by Mathieu on 12/11/2015.
+ * Classe Employee de l'application
+ * Gère tous les Employee créées
  */
 public class Employee {
+    // Variables
     private int id;
     private String name;
     private List<Skill> skills;
     private long salary;
     public static int SMIC = 1140;
 
+    // Constructeurs
     public Employee() {
     }
 
@@ -21,6 +25,7 @@ public class Employee {
         this.salary = salary;
     }
 
+    // Getters & Setters
     public int getId() {
         return id;
     }

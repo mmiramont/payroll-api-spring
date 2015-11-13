@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Mathieu on 13/11/2015.
+ * Classe des exceptions personnalisées.
  */
 @RestController
 public class ExceptionController extends Throwable {
     @ResponseStatus(value= HttpStatus.BAD_REQUEST,reason="Le salaire ne peut être inférieur au SMIC")
-    public class BelowSmicException extends Exception
+    public class SalaryBelowSmicException extends Exception
     {
         private static final long serialVersionUID = 100L;
     }

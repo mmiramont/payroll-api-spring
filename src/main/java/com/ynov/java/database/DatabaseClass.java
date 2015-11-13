@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Mathieu on 12/11/2015.
+ * Classe des bases de données de l'application
  */
 public class DatabaseClass {
     private static Map<Long, Employee> employeeMap = new ConcurrentHashMap<>();
