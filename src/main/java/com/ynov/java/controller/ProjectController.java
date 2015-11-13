@@ -1,15 +1,12 @@
 package com.ynov.java.controller;
 
 import com.ynov.java.model.Project;
-import com.ynov.java.model.Skill;
 import com.ynov.java.model.SkillList;
 import com.ynov.java.model.Team;
 import com.ynov.java.service.ProjectService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by Mathieu on 12/11/2015.
@@ -27,7 +24,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "project/{projectId}", method = RequestMethod.GET)
-    Project getProject(@PathVariable("projectId") int id) throws ExceptionController.ProjectInvalidId{
+    Project getProject(@PathVariable("projectId") int id) throws ExceptionController.ProjectInvalidIdException {
         return projectService.getProject(id);
     }
 
@@ -37,13 +34,13 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "project/{projectId}", method = RequestMethod.DELETE)
-    Project deleteEmployee(@PathVariable("projectId") int id){
+    Project deleteEmployee(@PathVariable("projectId") int id) throws ExceptionController.ProjectInvalidIdBadRequestException {
         return projectService.deleteProject(id);
     }
 
     @RequestMapping(value = "project/{projectId}/teamMember", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    void addEmployeeToProject(@PathVariable("projectId") int projectId, @RequestBody Project project) throws ExceptionController.EmployeeInvalidId{
+    void addEmployeeToProject(@PathVariable("projectId") int projectId, @RequestBody Project project) throws ExceptionController.EmployeeInvalidIdException {
         projectService.addMembertoProject(projectId, project.getEmployeeId());
     }
 

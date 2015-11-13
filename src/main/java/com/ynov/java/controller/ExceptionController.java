@@ -22,7 +22,12 @@ public class ExceptionController extends Throwable {
     }
 
     @ResponseStatus(value= HttpStatus.NOT_FOUND,reason="Pas d'employé avec cet id")
-    public class EmployeeInvalidId extends Exception{
+    public class EmployeeInvalidIdException extends Exception{
+        private static final long serialVersionUID = 100L;
+    }
+
+    @ResponseStatus(value= HttpStatus.BAD_REQUEST,reason="Pas d'employé avec cet id")
+    public class EmployeeInvalidIdBadReuestException extends Exception{
         private static final long serialVersionUID = 100L;
     }
 
@@ -39,7 +44,12 @@ public class ExceptionController extends Throwable {
     }
 
     @ResponseStatus(value= HttpStatus.NOT_FOUND,reason="Pas de projet avec cet id")
-    public class ProjectInvalidId extends Exception{
+    public class ProjectInvalidIdException extends Exception{
+        private static final long serialVersionUID = 100L;
+    }
+
+    @ResponseStatus(value= HttpStatus.NOT_FOUND,reason="Pas de projet avec cet id")
+    public class ProjectInvalidIdBadRequestException extends Exception{
         private static final long serialVersionUID = 100L;
     }
 }

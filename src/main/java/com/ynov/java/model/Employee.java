@@ -10,7 +10,7 @@ public class Employee {
     private String name;
     private List<Skill> skills;
     private long salary;
-    public static int SMIC = 1000;
+    public static int SMIC = 1140;
 
     public Employee() {
     }

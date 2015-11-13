@@ -23,9 +23,9 @@ public class ProjectService extends ExceptionController{
         return project;
     }
 
-    public Project getProject(int id) throws ProjectInvalidId {
+    public Project getProject(int id) throws ProjectInvalidIdException {
         if (projectMap.get(Long.valueOf(id)) == null)
-            throw new ProjectInvalidId();
+            throw new ProjectInvalidIdException();
         return projectMap.get(Long.valueOf(id));
     }
 
@@ -35,17 +35,19 @@ public class ProjectService extends ExceptionController{
         return project;
     }
 
-    public Project deleteProject (int id){
+    public Project deleteProject (int id) throws ProjectInvalidIdBadRequestException {
         Project project = projectMap.get(Long.valueOf(id));
+        if (project == null)
+            throw new ProjectInvalidIdBadRequestException();
         projectMap.remove(Long.valueOf(id));
         return project;
 }
 
-    public void addMembertoProject(int projectId, int employeeId) throws EmployeeInvalidId{
+    public void addMembertoProject(int projectId, int employeeId) throws EmployeeInvalidIdException {
         Project project = projectMap.get(Long.valueOf(projectId));
         Employee employee = employeeMap.get(Long.valueOf(employeeId));
         if(employee == null)
-            throw new ExceptionController.EmployeeInvalidId();
+            throw new EmployeeInvalidIdException();
         project.addEmployeeToTeam(employee);
         projectMap.replace(Long.valueOf(projectId), project);
     }
